@@ -1,29 +1,14 @@
 # Matrix
 
-TODO: Write a gem description
+Ruby solution for the [hacckerrank matrix](https://www.hackerrank.com/challenges/matrix) problem.
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-    gem 'matrix'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install matrix
+On Linux/Mac OSX:
+```
+git clone git://github.com/daneguevara/matrix.git
+```
 
 ## Usage
 
 TODO: Write usage instructions here
-
-## Contributing
-
-1. Fork it ( https://github.com/[my-github-username]/matrix/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
