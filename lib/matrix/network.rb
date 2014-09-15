@@ -3,7 +3,6 @@ module Matrix
 
     def initialize
       @cities_hash = {}
-      @machine_cities_hash = {}
     end
 
     def add_connection(a, b, weight)
@@ -14,7 +13,7 @@ module Matrix
     end
 
     def add_machine(name)
-      cities_hash[name] && machine_cities_hash[name] = cities_hash[name]
+      cities_hash[name] && cities_hash[name].machine? || cities_hash[name].toggle_machine
     end
 
     def cities
@@ -22,13 +21,12 @@ module Matrix
     end
 
     def machine_cities
-      machine_cities_hash.keys
+      cities_hash.values.select(&:machine?).map(&:name)
     end
 
     private
 
     attr_reader :cities_hash
-    attr_reader :machine_cities_hash
 
     def add_or_find_city(name)
       cities_hash[name] ||= City.new(name)

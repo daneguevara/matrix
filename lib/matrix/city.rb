@@ -27,13 +27,23 @@ module Matrix
     # Public: Connect this City to another.
     #
     # city - A Matrix::City.
-    def connect(city, weight)
-      city_roads[city] = Road.new(self, city, weight)
-      city.city_roads[self] = city_roads[city]
+    def connect(other, weight)
+      raise ArgumentError.new('Invalid city.') unless other && other.kind_of?(City) && !eql?(other)
+      raise ArgumentError.new('Non numeric weight.') unless weight.kind_of?(Numeric)
+      
+      city_roads[other] = Road.new(self, other, weight)
+      other.city_roads[self] = city_roads[other]
     end
 
     def eql?(other)
-      [name, neighbors] == [other.name, other.neighbors]
+      other.kind_of?(City) && [name, neighbors] == [other.name, other.neighbors]
+    end
+
+    # Public: Check if this City has a machine.
+    #
+    # Returns True or False.
+    def machine?
+      !!machine
     end
 
     # Public: Get neighboring Cities.
@@ -50,11 +60,21 @@ module Matrix
       city_roads.values
     end
 
+    # Public: Add or remove a machine to this City.
+    def toggle_machine
+      @machine = !machine
+    end
+
     alias_method :==, :eql?
 
     protected
 
     # Protected: Returns a Hash of Roads from this City to other Cities indexed by those Cities.
     attr_reader :city_roads
+
+    private
+
+    # Internal: Returns a truthy value representing whether or not this city has a machine.
+    attr_reader :machine
   end
 end

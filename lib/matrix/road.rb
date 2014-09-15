@@ -22,7 +22,7 @@ module Matrix
     end
 
     def eql?(other)
-      cities.sort == other.cities.sort
+      other.kind_of?(Road) && cities.sort == other.cities.sort
     end
   end
 end
