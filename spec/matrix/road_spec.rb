@@ -1,6 +1,5 @@
-require 'spec_helper'
-require 'matrix/road'
 
+require 'matrix/road' 
 describe Matrix::Road do
   subject(:road) { Matrix::Road.new(city_a, city_b, weight) }
   let(:city_a) { 'a' }
